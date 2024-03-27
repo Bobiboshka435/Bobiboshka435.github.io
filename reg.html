@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aviaplane</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body style="background-color: #e4e4e4;">
+
+  <!-- Шапка сайта -->
+  <header style="background-image: url('img/sky.png'); background-size: cover; padding: 20px;">
+    <div class="container">
+      <div class="row justify-content-end align-items-center">
+        <div class="col-auto">
+          <h1 style="color: white; cursor: pointer;" onclick="redirectToIndex()">AVIAPLANE</h1>
+          <p style="color: white; font-size: 14px;">Поиск выгодных авиабилетов</p>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-light" onclick="redirectToError()">Авиабилеты</button>
+          <button class="btn btn-light" onclick="redirectToHotel()">Отели</button>
+          <button class="btn btn-light" onclick="redirectToReg()">Зарегистрироваться</button>
+          <button class="btn btn-light" onclick="redirectToVhod()">Войти</button>
+          <button class="btn btn-light" onclick="redirectToSearch()">Поиск</button>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Откуда">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Куда">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Когда" id="datepicker">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Обратно" id="returnDatepicker">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" placeholder="Кол-во пассажиров">
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<!-- НАЧАЛО -->
+<div class="container mt-5">
+    <h2 class="mt-4 mb-4">Регистрация</h2>
+    <form action="http://127.0.0.1:5500" method="POST">
+        <div class="form-group">
+            <label for="surname">Фамилия:</label>
+            <input type="text" class="form-control" id="surname" name="surname" value="Хасаншин" pattern="[а-яА-ЯёЁ]+" title="Введите только буквы русского алфавита">
+        </div>
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" class="form-control" id="name" name="name" value="Разиль" pattern="[а-яА-ЯёЁ]+" title="Введите только буквы русского алфавита">
+        </div>
+        <div class="form-group">
+            <label for="patronymic">Отчество:</label>
+            <input type="text" class="form-control" id="patronymic" name="patronymic" value="Фаридович" pattern="[а-яА-ЯёЁ]+" title="Введите только буквы русского алфавита">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" class="form-control" id="email" name="email" value="Bobiboshka435@yandex.ru">
+        </div>
+        
+        <div class="form-group">
+            <label for="country">Выбор страны:</label>
+            <select class="form-control" id="country" name="country" value="Россия">
+                <option value="Russia" selected>Россия</option>
+                <option value="UK" >Украина</option>
+                <option value="BEL" >Белорусь</option>
+                <option value="AMER" >Америка</option>
+                <option value="ANGL" >Англия</option>
+                <option value="USA" >США</option>
+                <option value="KAN" >Канада</option>
+                <option value="GER" >Германия</option>
+                <option value="GR" >Грузия</option>
+                <option value="AZ" >Азербайджан</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Выбор города:</label><br>
+            <input type="radio" id="kazan" name="city" value="Казань" checked>
+            <label for="kazan">Казань</label><br>
+            <input type="radio" id="moscow" name="city" value="Москва">
+            <label for="moscow">Москва</label><br>
+            <input type="radio" id="piter" name="city" value="Питер">
+            <label for="piter">Питер</label><br>
+            <input type="radio" id="raz" name="city" value="Рязань">
+            <label for="raz">Рязань</label><br>
+        </div>
+        <div class="form-group">
+            <label>Выбор языка:</label><br>
+            <input type="checkbox" id="russian" name="language" value="русский" checked>
+            <label for="russian">Русский</label><br>
+            <input type="checkbox" id="english" name="language" value="английский" checked>
+            <label for="english">английский</label><br>
+            <input type="checkbox" id="elf" name="language" value="эльфийский" >
+            <label for="elf">эльфийский</label><br>
+            <input type="checkbox" id="japanes" name="language" value="японский" >
+            <label for="japanes">японский</label><br>
+            <input type="checkbox" id="ukr" name="language" value="украинский">
+            <label for="ukr">украинский</label><br>                
+        </div>
+        <div class="form-group">
+            <label for="profession">Выбор профессий:</label>
+            <select class="form-control" id="profession" name="profession" multiple>
+                <option value="программист" selected>Программист</option>
+                <option value="ди-джей" >ди-джей</option>
+                <option value="виджитал дизайнер" >виджитал дизайнер</option>
+                <option value="гейм дейвер" >гейм дейвер</option>
+                <option value="повар">повар</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" class="form-control" id="password" name="password" value="одинразнекотик">
+        </div>
+        <div class="form-group">
+            <label for="additional-info">Дополнительная информация:</label>
+            <textarea class="form-control" id="additional-info" name="additional-info" rows="4" cols="50">Собрались мужики в русскую рулетку играть. Взяли револьвер, зарядили один боевой, остальные газовые. Все раскумарились, а одного вообще убило
+            </textarea>
+        </div>
+        <input type="hidden" name="student" value="Арина">
+        <button type="submit" class="btn btn-primary">Загрузить информацию на сервер</button>
+        <button type="reset" class="btn btn-danger">Очистить форму</button>
+    </form>
+</div>
+
+<div class="container mt-4">
+    <a href="get.html" class="btn btn-primary">Сменить метод на: GET</a>
+</div>
+
+<div class="container mt-4">
+    <button class="btn btn-danger" onclick="openRegistrationForm()" >Открыть в отдельном окне</button>
+</div>
+
+<script>
+    function openRegistrationForm() {
+        // Определяем параметры окна
+        var options = 'left=100,top=100,width=500,height=600,toolbar=no,menubar=no,status=yes,location=no,resizable=yes,scrollbars=yes';
+        // Открываем форму в новом окне
+        var registrationFormWindow = window.open('reg.html', '_blank', options);
+
+        registrationFormWindow.onload = function() {
+            registrationFormWindow.document.querySelector('header').style.display = 'none';
+            registrationFormWindow.document.querySelector('footer').style.display = 'none';
+            registrationFormWindow.document.querySelector('.open-registration-form').style.display = 'none';
+            registrationFormWindow.document.querySelector('.go-to-get-page').style.display = 'none';
+        };
+    }
+</script>
+
+
+<!-- КОНЕЦ -->
+
+
+<footer class="bg-light py-4 ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>О нас</h5>
+          <ul class="list-unstyled">
+            <li>Партнёрская программа</li>
+            <li>Реклама</li>
+            <li>Пресс-центр</li>
+            <li>Вакансии</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Поддержка</h5>
+          <ul class="list-unstyled">
+            <li>Правила</li>
+            <li>Политика конфиденциальности</li>
+            <li>Оферта</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <p>© 2024, AVIAPLANE— дешевые авиабилеты</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+  </body>
+  </html>
+  
